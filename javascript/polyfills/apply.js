@@ -20,14 +20,14 @@ const obj2 = {
 obj2.func.apply(obj2, ["simplified"]);
 
 //simple polyfill
-Function.prototype.myApply1 = function (callback, ...args) {
+Function.prototype.myApply1 = function (callback, args) {
   callback.temp = this;
   return callback.temp(...args);
 };
 func.myApply1(obj2, ["simple"]);
 
  //handling edge cases
- Function.prototype.myApply2 = function (callback, ...args) {
+ Function.prototype.myApply2 = function (callback, args) {
     // use Function -> Function.prototype, Object-> Function.prototype and Object.prototype
     callback = callback || globalThis; // Default `callback` to `globalThis` if `null` or `undefined`
     callback.temp = this;
@@ -36,4 +36,4 @@ func.myApply1(obj2, ["simple"]);
     return result;
   };
   
-  func.myApply2(obj2, "test");
+  func.myApply2(obj2, ["test"]);
