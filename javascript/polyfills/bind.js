@@ -34,5 +34,14 @@ Function.prototype.myBind2 = function (scope, ...bindArgs) {
 const funcexe2 = func.myBind2(obj, "test");
 funcexe2();
 //or below
-// const funcexe2 = func.myBind2(obj);
-// funcexe2('test1');
+const funcexe3 = func.myBind2(obj);
+funcexe3("test1");
+
+// more simpler using apply
+Function.prototype.myBind3 = function (scope, ...bindArgs) {
+  return (...callArgs) => {
+    return this.apply(scope ?? globalThis, [...bindArgs, ...callArgs]);
+  };
+};
+const funcexe4 = func.myBind3(obj, "test2");
+funcexe4();
