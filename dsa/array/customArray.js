@@ -46,6 +46,7 @@ class MyArray2 {
     for (let i = index; i < this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
     }
+    delete this.data[this.length - 1];
     this.length--;
     return item;
   }
@@ -57,9 +58,9 @@ arr.push("pqr");
 arr.push("xyz");
 console.log("push", arr); //MyArray2 { length: 4, data: { '0': 'abc', '1': 'lmn', '2': 'pqr', '3': 'xyz' } }
 console.log("get(1)", arr.get(1)); //lmn
-arr.delete(2);
-console.log("delete(2)", arr); //MyArray2 { length: 3, data: { '0': 'abc', '1': 'lmn', '2': 'xyz', '3': 'xyz' } }
+arr.delete(1);
+console.log("delete(1)", arr); //MyArray2 { length: 3, data: { '0': 'abc', '1': 'pqr', '2': 'xyz' } }
 arr.pop();
-console.log("pop", arr); //MyArray2 { length: 2, data: { '0': 'abc', '1': 'lmn', '3': 'xyz' } }
+console.log("pop", arr); //MyArray2 { length: 2, data: { '0': 'abc', '1': 'pqr' } }
 arr.shift();
-console.log("shift", arr); //MyArray2 { length: 1, data: { '0': 'lmn', '3': 'xyz' } }
+console.log("shift", arr); //MyArray2 { length: 1, data: { '0': 'pqr' } }
